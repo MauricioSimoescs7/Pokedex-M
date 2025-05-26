@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Pokédex</h1>
+
+  @if (loading) {
+    <div class="loading">Carregando Pokémon...</div>
+  } @else {
+    <div class="pokemon-grid">
+      @for (pokemon of pokemons; track pokemon.id) {
+        <app-pokemon-card
+          [pokemon]="pokemon"
+          (clicked)="onPokemonClick(pokemon.id)"
+        ></app-pokemon-card>
+      }
+    </div>
+  }
+</div>

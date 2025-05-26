@@ -1,0 +1,17 @@
+<!-- pokemon-card.component.html -->
+<div
+  class="pokemon-card"
+  [class]="getTypeClass()"
+  (click)="clicked.emit(pokemon.id)"
+>
+  <img [src]="getImage()" [alt]="pokemon.name">
+  <div class="info">
+    <span class="number">#{{ pokemon.id | number:'3.0' }}</span>
+    <h3>{{ pokemon.name | titlecase }}</h3>
+    <div class="types">
+      <span *ngFor="let type of pokemon.types" [class]="type.type.name">
+        {{ type.type.name | uppercase }}
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<!-- pokemon-detail.component.html -->
+@if (pokemon) {
+  <div class="pokemon-detail" [class]="getTypeClass()">
+    <div class="header">
+      <h2>{{ pokemon.name | titlecase }}</h2>
+      <span class="number">#{{ pokemon.id | number:'3.0' }}</span>
+    </div>
+
+    <div class="content">
+      <div class="image-container">
+        <img [src]="getImage()" [alt]="pokemon.name">
+      </div>
+
+      <div class="info">
+        <div class="types">
+          @for (type of pokemon.types; track type.slot) {
+            <span [class]="type.type.name">{{ type.type.name | uppercase }}</span>
+          }
+        </div>
+
+        <div class="stats">
+          <h3>Estatísticas</h3>
+          @for (stat of pokemon.stats; track stat.stat.name) {
+            <div class="stat">
+              <span class="stat-name">{{ stat.stat.name | uppercase }}</span>
+              <div class="stat-bar">
+                <div
+                  class="stat-value"
+                  [style.width]="getStatPercentage(stat.base_stat)"
+                ></div>
+                <span class="stat-number">{{ stat.base_stat }}</span>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="physical">
+          <div>
+            <h4>Altura</h4>
+            <p>{{ pokemon.height / 10 }} m</p>
+          </div>
+          <div>
+            <h4>Peso</h4>
+            <p>{{ pokemon.weight / 10 }} kg</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
