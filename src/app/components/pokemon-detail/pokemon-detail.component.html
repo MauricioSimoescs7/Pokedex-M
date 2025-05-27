@@ -1,4 +1,3 @@
-<!-- pokemon-detail.component.html -->
 @if (loading) {
   <div class="loading">carregando</div>
 } @else if (error) {
@@ -27,12 +26,15 @@
           @for (stat of pokemon.stats; track stat.stat.name) {
             <div class="stat">
               <span class="stat-name">{{ stat.stat.name | uppercase }}</span>
-              <div class="stat-bar">
-                <div
-                  class="stat-value"
-                  [style.width]="getStatPercentage(stat.base_stat)"
-                ></div>
-                <span class="stat-number">{{ stat.base_stat }}</span>
+              <div class="stat-bar-container">
+                <div class="stat-bar">
+                  <div
+                    class="stat-value"
+                    [style.width]="getStatPercentage(stat.base_stat)"
+                    [attr.data-value]="getStatPercentage(stat.base_stat)"
+                  ></div>
+                </div>
+                <span class="stat-number">{{ stat.base_stat }}/255</span>
               </div>
             </div>
           }

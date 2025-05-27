@@ -29,7 +29,7 @@ private CarregarPkemom():void{
   if(!id){return}
 this.loading = true;
 this.PokemonService.getPokemonById(id).subscribe({
-  next:(result)=>{
+  next:(result: Pokemon)=>{
     this.pokemon=result;
     this.loading=false
   }, error:(rrr)=>{
@@ -50,7 +50,6 @@ this.PokemonService.getPokemonById(id).subscribe({
   }
 
   getStatPercentage(statValue: number): string {
-    const percentage = (statValue / 255) * 100;
-    return `${percentage}%`;
-  }
+  return `${Math.round((statValue / 255) * 100)}%`;
+}
 }
